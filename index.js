@@ -96,7 +96,8 @@ $(document).ready(function(){
 });
 
 
-$(document).on('click', '.navbar-toggler', function(){
+$(document).on('click', '.navbar-toggler', function(e) {
+    e.stopPropagation(); // Detiene la propagación del evento
     $toggle = $(this);
     if(pk.misc.navbar_menu_visible == 1) {
         $('html').removeClass('nav-open');
@@ -113,9 +114,9 @@ $(document).on('click', '.navbar-toggler', function(){
         var div = '<div id="bodyClick"></div>';
         $(div).appendTo("body");
 
-        // Flag para ignorar el primer clic
         let ignoreClick = true;
-        $('#bodyClick').click(function() {
+        $('#bodyClick').click(function(e) {
+            if ($(e.target).closest('.navbar-toggler').length > 0) return; // Ignora clics en el botón
             if (ignoreClick) {
                 ignoreClick = false;
                 return;
@@ -128,7 +129,6 @@ $(document).on('click', '.navbar-toggler', function(){
             }, 550);
         });
 
-        // Desactiva el flag después de un corto tiempo
         setTimeout(function() {
             ignoreClick = false;
         }, 50);
