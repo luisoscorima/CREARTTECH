@@ -96,47 +96,6 @@ $(document).ready(function(){
 });
 
 
-$(document).on('click', '.navbar-toggler', function(e) {
-    e.stopPropagation(); // Detiene la propagación del evento
-    $toggle = $(this);
-    if(pk.misc.navbar_menu_visible == 1) {
-        $('html').removeClass('nav-open');
-        pk.misc.navbar_menu_visible = 0;
-        setTimeout(function(){
-            $toggle.removeClass('toggled');
-            $('#bodyClick').remove();
-        }, 550);
-    } else {
-        setTimeout(function(){
-            $toggle.addClass('toggled');
-        }, 580);
-
-        var div = '<div id="bodyClick"></div>';
-        $(div).appendTo("body");
-
-        let ignoreClick = true;
-        $('#bodyClick').click(function(e) {
-            if ($(e.target).closest('.navbar-toggler').length > 0) return; // Ignora clics en el botón
-            if (ignoreClick) {
-                ignoreClick = false;
-                return;
-            }
-            $('html').removeClass('nav-open');
-            pk.misc.navbar_menu_visible = 0;
-            $('#bodyClick').remove();
-            setTimeout(function(){
-                $toggle.removeClass('toggled');
-            }, 550);
-        });
-
-        setTimeout(function() {
-            ignoreClick = false;
-        }, 50);
-
-        $('html').addClass('nav-open');
-        pk.misc.navbar_menu_visible = 1;
-    }
-});
 pk = {
     misc:{
         navbar_menu_visible: 0
