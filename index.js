@@ -19,7 +19,8 @@ var transparent = true;
 var transparentDemo = true;
 var fixedTop = false;
 
-var navbar_initialized = false;
+var 
+_initialized = false;
 
 $(document).ready(function(){
     window_width = $(window).width();
